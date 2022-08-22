@@ -1,13 +1,69 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik";
+}
+.navbar {
+  @apply fixed flex justify-between items-center px-5 md:px-10 py-1 bg-white
+      bottom-1 rounded-t-xl  w-[100vw] border-t-[2px] shadow-t-md
+      lg:px-[2vw] lg:right-0 lg:w-[8vw] lg:py-5 lg:flex-col lg:h-[100vh];
+}
+.navItem {
+  @apply flex flex-col justify-center py-4;
+}
+/* .navItem p {
+  @apply transition duration-150 delay-300;
+} */
+
+.navItem:hover p {
+  @apply visible;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.deActive {
+  @apply invisible;
+}
+.activeLink {
+  @apply text-blue-700;
+}
+
+/* league Page */
+.leagueItem {
+  @apply border-b-[1px] p-2;
+}
+.searchInput input {
+  @apply outline-none w-[90vw] p-[.5em]  bg-[#E9E9E9];
+}
+
+.searchInput {
+  @apply flex items-center w-[90vw] lg:w-[70vw] mx-auto rounded-md p-[.25em] bg-[#E9E9E9];
+}
+
+/*Home Page*/
+.homeTopBar {
+  @apply bg-white flex justify-between p-[1.5em]  shadow-t-lg
+  lg:pr-[8em];
+}
+.searchBtn {
+  @apply flex space-x-3 transition-transform;
+}
+.searchBtn input {
+  @apply outline-none rounded-md p-[.25em]  bg-[#E9E9E9];
+}
+.homeTopic {
+  @apply px-[5vw] py-[2vw] font-bold;
+}
+/*slider*/
+.sliderParent {
+  @apply flex flex-col items-center  lg:mr-[10vw];
+}
+.slider {
+  @apply flex overflow-hidden rounded-lg w-[71vw] h-[30vw] scroll-smooth;
+}
+.sliderCircle {
+  @apply w-[1vw] h-[1vw] rounded-full  cursor-pointer;
 }
