@@ -19,43 +19,23 @@ function ImageSlider() {
       caption: "Tackling caused Nani to miss the next game",
     },
   ];
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
 
   const ref = useRef(null);
   const scroll = (scrollOffset) => {
     ref.current.scrollLeft += scrollOffset;
+    console.log(ref);
   };
 
-  const circleOne = () => {
+  const circleOne = (currentItem, clickedItem) => {
     let elementWidth = ref.current.offsetWidth;
     console.log(elementWidth);
-    if (active === 2) {
-      scroll(-elementWidth);
-      setActive(1);
-    } else if (active === 3) {
-      scroll(-elementWidth * 2);
-      setActive(1);
-    }
-  };
-  const circleTwo = () => {
-    let elementWidth = ref.current.offsetWidth;
-    if (active === 1) {
-      scroll(+elementWidth);
-      setActive(2);
-    } else if (active === 3) {
-      scroll(-elementWidth);
-      setActive(2);
-    }
-  };
-  const circleThree = () => {
-    let elementWidth = ref.current.offsetWidth;
-    if (active === 1) {
-      scroll(+elementWidth * 2);
-      setActive(3);
-    } else if (active === 2) {
-      scroll(+elementWidth);
-      setActive(3);
-    }
+    const number = clickedItem - currentItem;
+    console.log(number);
+    scroll(elementWidth * number);
+    console.log(elementWidth * number);
+    setActive(clickedItem);
+    console.log(active);
   };
 
   return (
@@ -65,25 +45,17 @@ function ImageSlider() {
           return <Slide key={i} pic={pic} />;
         })}
       </div>
-      <div className="flex space-x-2">
-        <div
-          onClick={() => circleOne()}
-          className={`sliderCircle ${
-            active === 1 ? "bg-red-600" : "bg-slate-600"
-          }  `}
-        ></div>
-        <div
-          onClick={() => circleTwo()}
-          className={`sliderCircle ${
-            active === 2 ? "bg-red-600" : "bg-slate-600"
-          }  `}
-        ></div>
-        <div
-          onClick={() => circleThree()}
-          className={`sliderCircle ${
-            active === 3 ? "bg-red-600" : "bg-slate-600"
-          }  `}
-        ></div>
+      <div className="circleParent">
+        {images.map((circle, i) => {
+          return (
+            <div
+              onClick={() => circleOne(active, i)}
+              className={`sliderCircle ${
+                active === i ? "bg-red-600" : "bg-slate-600"
+              }  `}
+            ></div>
+          );
+        })}
       </div>
     </div>
   );
